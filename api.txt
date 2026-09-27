@@ -1,0 +1,53 @@
+package com.example.springweb;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@SpringBootApplication
+public class SpringwebApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SpringwebApplication.class, args);
+	}
+
+}
+@RestController
+@RequestMapping("api/tasks")
+class TaskController {
+	private final List<String> tl=new ArrayList<>(List.of("complete chapter 1", "complete chapter2", "chapter all done successfully"));
+
+	@GetMapping
+	public List<String> getTl() {
+		return tl;
+	}
+
+	@PostMapping
+	public String addtask(@RequestBody String newTask) {
+		tl.add(newTask);
+		return "task added successfully" + newTask;
+	}
+
+	@PutMapping("/{id}")
+	public String updateTask(@PathVariable int id, @RequestBody String updatedTask)
+	{
+		if (id >= 0 && id < tl.size()) {
+			tl.set(id, updatedTask);
+			return "task at index" + id + "update to" + updatedTask;
+		}
+		return "task not found";
+	}
+
+	@DeleteMapping("/{id}")
+	public String deleteTask(@PathVariable int id) {
+		if (id >= 0 && id < tl.size())
+		{
+			String removed = tl.remove(id);
+			return "deleted task=" + removed;
+		}
+		return "task not found";
+	}
+}
