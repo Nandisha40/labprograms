@@ -52,6 +52,7 @@ class TaskController {
 	}
 }
 ----------------------------------------------------------------------------------------------------------------------
+Products database
 <product.java>
 package com.example.spring.data;
 
@@ -223,5 +224,57 @@ spring.jpa.show-sql=true
 
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
+****************************************************************************************************************************************
+spring security
+<GreetingController.java>
+package com.example.Database;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class GreetingController {
+    @GetMapping
+    public String Greets(){
+        return "hello";
+    }
+}
+--------------------------------------------
+<greeting.java>
+package com.example.Database;
+
+public class Greeting {
+    String greeting;
+
+    public String getGreeting()
+    {
+        return "hello";
+    }
+
+}
+------------------------------------------
+<application.property>
+spring.application.name=Database
+server.port=8081
+spring,application.username=Nandi
+spring,application.user.password=8904126072
+-----------------------------------------------------
+<databaseApplication>
+package com.example.Database;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DatabaseApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DatabaseApplication.class, args);
+	}
+
+}
+------------------------------------------------------------------------------------------------------
+
+
+
 
 
