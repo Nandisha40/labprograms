@@ -1,3 +1,1470 @@
+
+E-commerce
+
+App.js
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import Login from "./pages/Login";
+import Menu from "./pages/Menu";
+import Electronics from "./pages/Electronics";
+import Fashion from "./pages/fashion";
+import Mobiles from "./pages/mobiles";
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+
+        <Route path="/" element={<Login />} />
+
+        <Route path="/menu" element={<Menu />} />
+
+        <Route path="/electronics" element={<Electronics />} />
+
+        <Route path="/fashion" element={<Fashion/>}/>
+
+        <Route path="/mobiles" element={<Mobiles/>}/>
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+export default App;
+--------------------------------------------
+login form login.js
+import { useNavigate } from "react-router-dom";
+import lockImage from "./lock.jpg";
+function Login() {
+
+  const navigate = useNavigate();
+
+  const login = () => {
+    navigate("/menu");
+  };
+
+  return (
+   <div
+  style={{
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: "100vh"
+  }}
+>
+  <form
+    style={{
+      border: "2px groove gray",
+      padding: "20px",
+      width: "600px",
+      borderRadius: "10px",
+      textAlign: "center",
+      boxShadow: "0 4px 15px rgba(150, 19, 200, 100)"
+    }}
+  >
+    <div style={{textAlign:"center"}}>
+      <h1 style={{fontsize:"45px",fontWeight:"bold",color:"blueviolet",fontFamily: "Georgia, serif"}}>welcome</h1>
+      <img
+          src={lockImage}
+          alt="Lock"
+          width="80"
+        /><br/>
+
+      <input type="text" placeholder="Username" style={{
+          width: "400px",
+          padding: "12px",
+          margin: "10px",
+          border: "3px solid gray",
+          borderRadius: "5px",
+          fontSize: "20px",
+          color: "black"}} />
+
+      <br />
+      <input type="email" placeholder="email" style={{
+          width: "400px",
+          padding: "12px",
+          margin: "10px",
+          border: "3px solid gray",
+          borderRadius: "5px",
+          fontSize: "20px",
+          color: "black"}} />
+
+      <br />
+
+      <input type="password" placeholder="Password" style={{
+          width: "400px",
+          padding: "12px",
+          margin: "10px",
+          border: "3px solid gray",
+          borderRadius: "5px",
+          fontSize: "20px",
+          color: "black",
+          marginBottom:"-25px"}}/>
+
+      <br/>
+      </div>
+
+      <div style={{
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  width: "530px",
+  marginBottom:"15px"}}/>
+  <diV style={{textAlign:"center"}}>
+  <label>
+    <input type="checkbox" style={{marginLeft:"-px",marginRight:"-15px",width:"50px"}} /><text style={{marginRight:"50px",fontSize:"20px"}}>Remember for 10 days</text>
+
+  </label>
+  <a href="/forgot-password" style={{fontSize:"20px"}}>
+    Forgot password
+  </a><br/><br/><br/>
+
+      <button style={{height:"50px",width:"300px",backgroundColor:"blue",fontSize:"20px",color:"white",borderRadius:"15px"}}onClick={login}>
+        Sign up
+      </button>
+
+    </diV>
+    </form>
+    </div>
+  );
+}
+
+export default Login;
+ 
+------------------------------------------------------------------
+menu.js
+import { Link } from "react-router-dom";
+
+function Menu() {
+
+  return (
+    <div style={{textAlign:"center"}}>
+
+      <h1 style={{fontWeight:"bold"}}><u>E-Commerce Menu</u></h1>
+
+      <Link to="/electronics">
+        <button style={{padding:"8px",backgroundColor:"blue",borderRadius:"4px",color:"white",marginLeft:"4px"}}>Electronics</button>
+      </Link>
+
+      <Link to="/fashion">
+        <button style={{padding:"8px",backgroundColor:"blue",borderRadius:"4px",color:"white",marginLeft:"40px"}}>Fashion</button>
+      </Link>
+
+      <Link to="/mobiles">
+        <button style={{padding:"8px",backgroundColor:"blue",borderRadius:"4px",color:"white",marginLeft:"40px"}}>Mobiles</button>
+      </Link>
+
+      <Link to="/cart">
+        <button style={{padding:"8px",backgroundColor:"gray",borderRadius:"4px",color:"white",marginLeft:"40px"}}>Cart</button>
+      </Link>
+
+     
+    </div>
+
+  );
+}
+
+export default Menu;
+--------------------------------------------------------------------------------
+home.js
+import { Link } from "react-router-dom";
+
+function Home() {
+  return (
+    <div>
+      <h1>My E-Commerce</h1>
+
+      <Link to="/electronics">
+        <button>Electronics</button>
+      </Link>
+
+      <Link to="/fashion">
+        <button>Fashion</button>
+      </Link>
+
+      <Link to="/mobiles">
+        <button>Mobiles</button>
+      </Link>
+
+      <Link to="/cart">
+        <button>Cart</button>
+      </Link>
+    </div>
+  );
+}
+
+export default Home;
+
+-----------------------------------------------------------------------------------------------
+ electronics.js
+import { Link } from "react-router-dom";
+
+import laptop from "./images/laptop.jpg";
+import headphone from "./images/headphone.jpg";
+import tv from "./images/tv.jpg";
+import fridge from "./images/friges.jpg";
+import washing from "./images/washing.jpg";
+import speaker from "./images/speaker.jpg";
+
+function Electronics() {
+  return (
+    <div
+      style={{
+        textAlign: "center",
+        padding: "30px",
+        minHeight: "100vh"
+      }}
+    >
+      <h1>Electronics</h1>
+
+      {/* Laptop */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>Laptop</h2>
+
+        <img
+          src={laptop}
+          alt="Laptop"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹50,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      {/* Headphones */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>Headphones</h2>
+
+        <img
+          src={headphone}
+          alt="Headphones"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹2,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      {/* Smart TV */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>Smart TV</h2>
+
+        <img
+          src={tv}
+          alt="Smart TV"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹50,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+       {/* fridge */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>FRIDGE</h2>
+
+        <img
+          src={fridge}
+          alt="fridge"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹25,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+       {/* washing machine*/}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>WASHING MACHINE</h2>
+
+        <img
+          src={washing}
+          alt="washing"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹20,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+       {/* speaker */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>SPEAKERS</h2>
+
+        <img
+          src={speaker}
+          alt="speaker"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹30,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      {/* Back to Menu */}
+      <div style={{ marginTop: "30px" }}>
+        <Link to="/menu">
+          <button
+            style={{padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkgreen";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightgreen";
+            e.target.style.color = "black";
+              
+            }}
+          >
+            Back to Menu
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default Electronics;
+-------------------------------------------------------------------------------------------
+fashion.js
+import { Link } from "react-router-dom";
+
+import brown from "./images/brown.jpg";
+import shrirts from "./images/shrirts.jpg";
+import shits from "./images/shits.jpg";
+import tshit from "./images/tshit.jpg";
+import doti from "./images/doti.jpg";
+import bagy from "./images/bagy.jpg";
+
+function Fashion() {
+  return (
+    <div
+      style={{
+        textAlign: "center",
+        padding: "30px",
+        minHeight: "100vh"
+      }}
+    >
+      <h1>Fashion</h1>
+
+      {/* shirts*/}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>shirts</h2>
+
+        <img
+          src={shits}
+          alt="shirts"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹5,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      {/* t shitrst */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>shirts</h2>
+
+        <img
+          src={shrirts}
+          alt="Headphones"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹1,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      {/* doti */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>doti</h2>
+
+        <img
+          src={doti}
+          alt="doti"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹3,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+      {/* tshit */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>T-shirts</h2>
+
+        <img
+          src={tshit}
+          alt="tshit"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹5,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+      {/* bagy */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>bagy</h2>
+
+        <img
+          src={bagy}
+          alt="bagy"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹6,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+      {/* brown */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>Shirts</h2>
+
+        <img
+          src={brown}
+          alt="brown"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹10,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      {/* Back to Menu */}
+      <div style={{ marginTop: "30px" }}>
+        <Link to="/menu">
+          <button
+            style={{
+              padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkgreen";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightgreen";
+            e.target.style.color = "black";
+            }}
+          >
+            Back to Menu
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default Fashion;
+----------------------------------------------------------------------
+
+mobiles.js
+import { Link } from "react-router-dom";
+
+import sumsung from "./images/sumsung.jpg";
+import ip from "./images/ip.jpg";
+import nokia from "./images/nokia.jpg";
+import oppo from "./images/oppo.jpg";
+import vivo from "./images/vivo.jpg"
+import realme from "./images/realme.jpg";
+
+function Mobiles() {
+  return (
+    <div
+      style={{
+        textAlign: "center",
+        padding: "30px",
+        minHeight: "100vh"
+      }}
+    >
+      <h1>Mobiles</h1>
+
+      {/* sunsung*/}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>Sumsung</h2>
+
+        <img
+          src={sumsung}
+          alt="sumsung"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹20,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      {/* ip */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>Apple</h2>
+
+        <img
+          src={ip}
+          alt="ip"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹100,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+      {/* nokia */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>nokia</h2>
+
+        <img
+          src={nokia}
+          alt="nokia"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹1,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+      {/* oppo */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>OPPO</h2>
+
+        <img
+          src={oppo}
+          alt="oppo"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹1,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+      {/* vivo */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>VIVO</h2>
+
+        <img
+          src={vivo}
+          alt="vivo"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹1,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+      {/* realme */}
+      <div
+        style={{
+          display: "inline-block",
+          width: "250px",
+          margin: "15px",
+          padding: "20px",
+          verticalAlign: "top",
+          boxSizing: "border-box",
+          border: "1px solid #ccc",
+          borderRadius: "10px"
+        }}
+      >
+        <h2>REALME</h2>
+
+        <img
+          src={realme}
+          alt="realme"
+          style={{
+            width: "200px",
+            height: "200px",
+            objectFit: "cover"
+          }}
+        />
+
+        <p style={{ fontSize: "18px" }}>
+          Price: ₹1,000
+        </p>
+
+        <button
+          style={{
+            padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkblue";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightblue";
+            e.target.style.color = "black";
+          }}
+        >
+          Add to Cart
+        </button>
+      </div>
+
+         
+      {/* Back to Menu */}
+      <div style={{ marginTop: "30px" }}>
+        <Link to="/menu">
+          <button
+            style={{
+              padding: "10px 20px",
+            cursor: "pointer",
+            backgroundColor: "lightblue",
+            color: "black",
+            border: "none",
+            borderRadius: "5px"
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.backgroundColor = "darkgrren";
+            e.target.style.color = "white";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.backgroundColor = "lightgreen";
+            e.target.style.color = "black";
+            }}
+          >
+            Back to Menu
+          </button>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default Mobiles;
+-------------------------------------------------------------------------------------------------------
+usestate
+
+import { useState } from "react";
+import { createRoot } from "react-dom/client";
+
+function Fruit() {
+  const [color, setColor] = useState("red");
+
+  return (
+    <div>
+      <h1>The fruit is {color}</h1>
+
+      <button onClick={() => setColor("green")}>
+        Change Color
+      </button>
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")).render(
+  <Fruit />
+);
+
+export default Fruit;
+--------------------------------------------------------------------------------------------------
+useeffect
+import { useState, useEffect } from "react";
+import { createRoot } from "react-dom/client";
+
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div>
+      <h1>
+        The timer has rendered {count} times!
+      </h1>
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")).render(
+  <Timer />
+);
+
+export default Timer;
+--------------------------------------------------------------------------------------------------------------------
+usecontext
+import { useState, createContext, useContext } from "react";
+import { createRoot } from "react-dom/client";
+
+const UserContext = createContext();
+
+function Component1() {
+  const [user, setUser] = useState("Linux");
+
+  return (
+    <UserContext.Provider value={user}>
+      <h1>Hello {user}</h1>
+      <Component2 />
+    </UserContext.Provider>
+  );
+}
+
+function Component2() {
+  return (
+    <>
+      <h1>Component 2</h1>
+      <Component3 />
+    </>
+  );
+}
+
+function Component3() {
+  const user = useContext(UserContext);
+
+  return (
+    <>
+      <h1>Component 3</h1>
+      <h2>Hello {user} again!</h2>
+    </>
+  );
+}
+
+createRoot(document.getElementById("root")).render(
+  <Component1 />
+);
+
+export default Component1;
+-------------------------------------------------------------------------------------------
+useReducer
+import { useReducer } from "react";
+import { createRoot } from "react-dom/client";
+
+const initialScore = [
+  {
+    id: 1,
+    score: 0,
+    name: "Kiran"
+  },
+  {
+    id: 2,
+    score: 0,
+    name: "Amith"
+  }
+];
+
+const reducer = (state, action) => {
+  switch (action.type) {
+
+    case "INCREASE":
+      return state.map((player) =>
+        player.id === action.id
+          ? { ...player, score: player.score + 1 }
+          : player
+      );
+
+    case "DECREASE":
+      return state.map((player) =>
+        player.id === action.id
+          ? { ...player, score: player.score - 1 }
+          : player
+      );
+
+    case "RESET":
+      return state.map((player) => ({
+        ...player,
+        score: 0
+      }));
+
+    default:
+      return state;
+  }
+};
+
+function App() {
+  const [score, dispatch] = useReducer(
+    reducer,
+    initialScore
+  );
+
+  return (
+    <div>
+      <h1>Player Score</h1>
+
+      {score.map((player) => (
+        <div key={player.id}>
+          <h2>
+            {player.name} : {player.score}
+          </h2>
+
+          <button
+            onClick={() =>
+              dispatch({
+                type: "INCREASE",
+                id: player.id
+              })
+            }
+          >
+            +
+          </button>
+
+          <button
+            onClick={() =>
+              dispatch({
+                type: "DECREASE",
+                id: player.id
+              })
+            }
+          >
+            -
+          </button>
+        </div>
+      ))}
+
+      <button
+        onClick={() =>
+          dispatch({ type: "RESET" })
+        }
+      >
+        Reset
+      </button>
+    </div>
+  );
+}
+
+createRoot(document.getElementById("root")).render(
+  <App />
+);
+
+export default App;
+----------------------------------------------------------------------------------------------------
+Rest Api
+
 package com.example.springweb;
 
 import org.springframework.boot.SpringApplication;
@@ -273,8 +1740,26 @@ public class DatabaseApplication {
 
 }
 ------------------------------------------------------------------------------------------------------
-
-
+**********************************************************************************************
+docker container
+<app.js>
+const express=require('express');
+const app=express();
+const PORT=3000;
+app.get('/',(req,res)=>{
+    res.send('hello from my custom docker container');
+});
+app.listen(PORT,()=>console.log(`server is running on ${PORT}`));
+----------------------------------------------------------------------------
+<Dockerfile>
+FROM node:20-alpine
+WORKDIR /app
+COPY package.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["node","app.js"]
+--------------------------------------------------------------------------------------------------------------
 
 
 
