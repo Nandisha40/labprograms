@@ -1,3 +1,26 @@
+git commands
+cd/
+md hub
+cd hub
+git init
+git config --global user.name "nandeesh"
+git config --global user.email "nandishab40@gmail.com"
+notepad file.html
+git add file.html
+git commit -m "my first file"
+git branch test
+git checkout test
+git status
+ls
+git config --list
+open github and create Nandisha40 repository
+git remote add origin https://github.com/Nandisha40/raj.git
+git branch
+git merge branch
+git push -u origin master
+changes
+git pull
+---------------------------------------------------------------------------------------------------------
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 
