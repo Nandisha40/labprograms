@@ -20,7 +20,9 @@ git merge branch
 git push -u origin master
 changes
 git pull
----------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+npx create-react-app project
+
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Link, Routes, Route } from "react-router-dom";
 
@@ -1615,7 +1617,218 @@ createRoot(document.getElementById("root")).render(
 );
 
 export default App;
-----------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+npm install -g typescript
+tsc file.ts
+node file
+<typescript>
+const score:number=45;
+if(score>90){
+console.log("A+ grade");
+}
+else if(score<70){
+console.log("B+ grade");
+}
+else if(score<50){
+console.log("c grade");
+}
+else{
+console.log("invalid");
+}
+console.log("------------------------------------")
+let day:number=1;
+switch(day){
+case 1:
+console.log("sunday");
+break;
+case 2:
+console.log("monday");
+break;
+case 3:
+console.log("tuesnday");
+break;
+case 4:
+console.log("wednesday");
+break;
+case 5:
+console.log("thursday");
+break;
+case 6:
+console.log("friday");
+break;
+case 7:
+console.log("saturday");
+break;
+
+default:
+console.log("invalid");
+}
+console.log("------------------------------------")
+console.log("1")
+console.log("2")
+console.log("3")
+console.log("4")
+console.log("5")
+
+console.log("------------------------------------")
+let i1=0;
+while(i1<5){
+console.log(i1);
+i1++;
+}
+console.log("------------------------------------")
+let i:number=0;
+do{
+console.log(i);
+i++;
+}
+while(i<5);
+console.log("------------------------------------")
+function add(a:number,b:number):number{
+return a+b;
+}
+console.log("addition:"+add(5,6));
+-------------------------------------------------------------
+dependency injection
+<constructor.java>
+package com.example.constructor;
+
+public class Constructor{
+    String name;
+    int reg_no;
+    String branch;
+
+    Constructor(String name, int reg_no, String branch) {
+        this.name = name;
+        this.reg_no = reg_no;
+        this.branch = branch;
+    }
+    public void display()
+        {
+            System.out.println("\nName:"+name+"\nReg.go:"+reg_no+"\nBranch:"+branch);
+        }
+    }
+------------
+<constructorApplication.java>
+package com.example.constructor;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+public class ConstructorApplication {
+
+	public static void main(String[] args) {
+		ApplicationContext context =
+				new ClassPathXmlApplicationContext("beans.xml");
+
+		Constructor student =
+				context.getBean("student", Constructor.class);
+
+		student.display();
+	}
+}
+------------------------
+<bean.xml>
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.example.constructor.Constructor">
+        <constructor-arg name="name" value="Kavya"/>
+        <constructor-arg name="reg_no" value="45"/>
+        <constructor-arg name="branch" value="CSE"/>
+    </bean>
+
+</beans>
+--------------------------------------------------------------------------------------
+<method.java>
+package com.example.MethodBased;
+
+public class Method {
+    String name;
+    int reg_no;
+    String Branch;
+
+    public String getName()
+    {
+        return name;
+    }
+    public void setName(String name)
+    {
+        this.name= name;
+    }
+    public int getReg_no()
+    {
+        return reg_no;
+    }
+    public void setReg_no(int reg_no)
+    {
+        this.reg_no= reg_no;
+    }
+    public String getBranch()
+    {
+        return Branch;
+    }
+    public void setBranch(String Branch)
+    {
+        this.Branch= Branch;
+    }
+public void display() {
+    System.out.println("\nName:" + name + "\nReg_no:" + reg_no + "\nBranch:"+Branch);
+}
+}
+-------------
+<methodbasedApplication.java>
+package com.example.MethodBased;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+@SpringBootApplication
+public class MethodBasedApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(MethodBasedApplication.class, args);
+
+		ApplicationContext context =
+				new ClassPathXmlApplicationContext("Configuration.xml");
+
+		Method student =
+				context.getBean("student", Method.class);
+
+		student.display();
+	}
+
+}
+-----------------
+<configuration.xml>
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student" class="com.example.MethodBased.Method">
+        <property name="name" value="Kavya"/>
+        <property name="reg_no" value="45"/>
+        <property name="branch" value="CSE"/>
+    </bean>
+
+</beans>
+-----------------
+<appli.pro>
+spring.application.name=MethodBased
+spring.application.port=8081
+server.port=8081
+
+
+----------------------------------------------------------------------------------
 Rest Api
 <Student.java>
 package com.example.Api;
@@ -2193,6 +2406,9 @@ RUN npm install
 COPY . .
 EXPOSE 3000
 CMD ["node","app.js"]
+
+docker build -t my-node-app .
+docker run -d -p 8080:3000 my-node-app .
 --------------------------------------------------------------------------------------
 <dockerfile>
 FROM eclipse-temurin:27-jdk-alpine
