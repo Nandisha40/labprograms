@@ -90,6 +90,100 @@ function App() {
 
 export default App;
 --------------------------------------------
+<feedback>
+import React, { useState } from "react";
+
+function Feedback() {
+
+    const [name, setName] = useState("");
+    const [feedback, setFeedback] = useState("");
+
+    function submit() {
+        alert(`Thank you ${name} for your feedback!`);
+    }
+
+    return (
+        <div style={{ textAlign: "center" }}>
+            <h2>Feedback Form</h2>
+
+            <input
+                type="text"
+                placeholder="Enter Name"
+                onChange={(e) => setName(e.target.value)}
+            />
+
+            <br /><br />
+
+            <textarea
+                placeholder="Enter Feedback"
+                onChange={(e) => setFeedback(e.target.value)}
+            />
+
+            <br /><br />
+
+            <h3>Rate Us</h3>
+
+            {["Worst", "Bad", "Average", "Good", "Excellent"].map((item) => (
+                <label>
+                    <input type="radio" name="rating" />
+                    {item}
+                    <br />
+                </label>
+            ))}
+
+            <br />
+
+            <button onClick={submit}>Submit</button>
+        </div>
+    );
+}
+
+export default Feedback;
+
+--------------------------------------------
+login form
+import React, { useState } from "react";
+
+function Login() {
+
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+
+    function handleLogin() {
+        if (name === "admin" && password === "1234") {
+            alert("Login Successful");
+        } else {
+            alert("Invalid Login");
+        }
+    }
+
+    return (
+        <div>
+            <h2>Login Form</h2>
+
+            <input
+                type="text"
+                placeholder="Enter Name"
+                onChange={(e) => setName(e.target.value)}
+            />
+
+            <br /><br />
+
+            <input
+                type="password"
+                placeholder="Enter Password"
+                onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <br /><br />
+
+            <button onClick={handleLogin}>Login</button>
+        </div>
+    );
+}
+
+export default Login;
+---------------------------------------------
 login form login.js
 import { useNavigate } from "react-router-dom";
 import lockImage from "./lock.jpg";
@@ -1523,7 +1617,272 @@ createRoot(document.getElementById("root")).render(
 export default App;
 ----------------------------------------------------------------------------------------------------
 Rest Api
+<Student.java>
+package com.example.Api;
 
+public class Student{
+
+    private int id;
+    private String name;
+    private String email;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
+<StudentController>
+package com.example.Api;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/student")
+public class StudentController {
+
+    private List<Student>students = new ArrayList<>();
+
+    // GET - Display all students
+    @GetMapping
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    // GET - Display student by ID
+    @GetMapping("/{id}")
+    public Student getStudent(@PathVariable int id) {
+
+        for (Student s : students) {
+            if (s.getId() == id) {
+                return s;
+            }
+        }
+
+        return null;
+    }
+
+    // POST - Add student
+    @PostMapping
+    public Student addStudent(@RequestBody Student student) {
+
+        students.add(student);
+
+        return student;
+    }
+
+    // PUT - Update student
+    @PutMapping("/{id}")
+    public Student updateStudent(
+            @PathVariable int id,
+            @RequestBody Student student) {
+
+        for (Student s : students) {
+
+            if (s.getId() == id) {
+
+                s.setName(student.getName());
+                s.setEmail(student.getEmail());
+
+                return s;
+            }
+        }
+
+        return null;
+    }
+
+    // DELETE - Delete student
+    @DeleteMapping("/{id}")
+    public String deleteStudent(@PathVariable int id) {
+
+        for (Student s : students) {
+
+            if (s.getId() == id) {
+                students.remove(s);
+                return "Student deleted successfully";
+            }
+        }
+
+        return "Student not found";
+    }
+}
+<studentApplication>
+
+package com.example.api;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class StudentApplication {
+
+    public static void main(String[] args) {
+
+        SpringApplication.run(StudentApplication.class, args);
+
+    }
+}
+
+--------------------------------------------------------------------------------------------------
+<jpa>
+<Student.java>
+
+package com.example.api;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Student {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String name;
+    private String email;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+}
+<StudentRepository>
+
+package com.example.api;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepository
+        extends JpaRepository<Student, Integer> {
+
+}
+<Student controller>
+
+package com.example.api;
+
+import java.util.List;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/student")
+public class StudentController {
+
+    private final StudentRepository repository;
+
+    public StudentController(StudentRepository repository) {
+        this.repository = repository;
+    }
+
+    // GET - Display all students
+    @GetMapping
+    public List<Student> getStudents() {
+        return repository.findAll();
+    }
+
+    // GET - Find student by ID
+    @GetMapping("/{id}")
+    public Student getStudent(@PathVariable int id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    // POST - Add student
+    @PostMapping
+    public Student addStudent(@RequestBody Student student) {
+        return repository.save(student);
+    }
+
+    // PUT - Update student
+    @PutMapping("/{id}")
+    public Student updateStudent(
+            @PathVariable int id,
+            @RequestBody Student student) {
+
+        Student s = repository.findById(id).orElse(null);
+
+        if (s != null) {
+            s.setName(student.getName());
+            s.setEmail(student.getEmail());
+
+            return repository.save(s);
+        }
+
+        return null;
+    }
+
+    // DELETE - Delete student
+    @DeleteMapping("/{id}")
+    public String deleteStudent(@PathVariable int id) {
+
+        repository.deleteById(id);
+
+        return "Student deleted successfully";
+    }
+}
+<StudentRepositry>
+package com.example.api;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface StudentRepository
+        extends JpaRepository<Student, Integer> {
+
+}
+<application pro>
+spring.datasource.url=jdbc:mysql://localhost:3306/college
+spring.datasource.username=root
+spring.datasource.password=your_password
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+
+ INSERT INTO student VALUES(1, 'Ram', 20);
+UPDATE student SET age=21 WHERE id=1;
+DELETE FROM student WHERE id=1;
+UPDATE student SET age=21 WHERE id=1;
+SELECT * FROM student;
+DELETE FROM student WHERE id=1;
+
+-----------------------------------------------------------------------------------------------
 package com.example.springweb;
 
 import org.springframework.boot.SpringApplication;
@@ -1798,7 +2157,23 @@ public class DatabaseApplication {
 	}
 
 }
-------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+mongo agg
+db.student.aggregate([
+  {$match: {marks: {$gt: 70}}}
+])
+db.student.aggregate([
+  {$group: {_id: null, avgMarks: {$avg: "$marks"}}}
+])
+db.student.aggregate([
+  {$sort: {marks: 1}}
+])
+db.student.aggregate([
+  {$project: {_id: 0, name: 1, marks: 1}}
+])
+db.student.aggregate([
+    {$count: "totalStudents"}
+])
 **********************************************************************************************
 docker container
 <app.js>
