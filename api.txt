@@ -2324,6 +2324,20 @@ spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
 ****************************************************************************************************************************************
 spring security
+package com.example.securitys;
+
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@RestController
+public class Greetingcontroller{
+    @GetMapping("/")
+    public String Greet(){
+        return "hello";
+    }
+}
+
+------------------------------------
 <GreetingController.java>
 package com.example.Database;
 import org.springframework.stereotype.Controller;
@@ -2336,6 +2350,16 @@ public class GreetingController {
         return "hello";
     }
 }
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+<p th:text="|hello,world|">
+</body>
+</html>
 --------------------------------------------
 <greeting.java>
 package com.example.Database;
@@ -2349,6 +2373,7 @@ public class Greeting {
     }
 
 }
+
 ------------------------------------------
 <application.property>
 spring.application.name=Database
